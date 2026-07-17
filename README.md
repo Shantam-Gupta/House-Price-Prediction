@@ -3,6 +3,11 @@
 ### 👤 Developer Info
 * **Name:** Kumar Shantam Gupta
 * **Registration Number:** 23BAI11113
+* **Professional Email:** [23BAI11113@vit.ac.in](mailto:23BAI11113@vit.ac.in)
+* **GitHub Username:** [Shantam-Gupta](https://github.com/Shantam-Gupta)
+* **Project Title:** Bangalore House Price Prediction
+* **Course/Subject Name:** Machine Learning & Data Science
+* **Bio/Description:** A student developer focused on building end-to-end Machine Learning applications, data pipelines, and responsive web integrations.
 
 ---
 
