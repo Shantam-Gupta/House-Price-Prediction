@@ -216,26 +216,3 @@ You can test the Flask API routes using **Postman** to ensure predictions are wo
   }
   ```
   *(Note: The result is in Lakhs, representing ₹62.53 Lakhs or ₹6,253,000).*
-
----
-
-## 🎓 Interview & Presentation Cheat Sheet
-
-Use these quick Q&As to explain the project during viva, presentation, or technical interviews:
-
-### 1. How do you describe the project in 30 seconds?
-> **Answer**: "I built a full-stack Bangalore House Price Prediction application. The client is a web page built with HTML, CSS, and jQuery. It sends user inputs (square footage, BHK, bathrooms, and location) via a POST request to a Python Flask API server. The Flask server runs utility code that loads a Scikit-Learn Linear Regression model from a serialized pickle file, runs inference on the inputs, and returns the estimated property price in Lakhs to display on the UI."
-
-### 2. What was the most challenging part of this project?
-> **Answer**: "Data cleaning and outlier removal. Real estate datasets are notoriously noisy. For instance, some rows had 8 bedrooms in just 600 sqft, which is an outlier. Others had prices that were far too high or low compared to the location's average. I wrote specialized Python filters to remove sqft-per-BHK anomalies, price-per-sqft statistical outliers using mean and standard deviation, and cases where lower BHKs cost more than higher BHKs in the same area. This drastically improved model performance."
-
-### 3. Why did you use Linear Regression instead of other algorithms?
-> **Answer**: "I used `GridSearchCV` to run hyperparameter tuning across multiple models, specifically comparing Linear Regression, Lasso, and Decision Tree Regressor. Linear Regression gave the highest cross-validation score of approximately **84.7%**, while Lasso was around **68%** and Decision Tree was around **71%**. Therefore, Linear Regression was chosen as the production model."
-
-### 4. How did you handle the categorical 'location' column?
-> **Answer**: "Machine learning models only understand numerical data, so the `location` column had to be converted. Since there were initially over 1,300 locations, one-hot encoding would have created 1,300+ columns (the curse of dimensionality). To solve this, I categorized any location with 10 or fewer properties as `'other'`. This consolidated the list to 242 unique locations. I then used Pandas `get_dummies()` to perform one-hot encoding, dropping the `'other'` column to avoid the dummy variable trap."
-
-### 5. What are the files columns.json and pickle doing?
-> **Answer**: 
-> * **`banglore_home_prices_model.pickle`**: Contains the saved mathematical weights/parameters of our trained Linear Regression model. We deserialize (load) this file in Flask so we don't have to retrain the model from scratch every time the server starts.
-> * **`columns.json`**: Saves the exact order and names of the feature columns of the training dataset. We need this because when a user submits inputs in Flask, we must construct a NumPy array structure matching the exact format of the features the model was trained on.
