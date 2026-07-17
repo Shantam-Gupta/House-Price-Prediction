@@ -163,6 +163,62 @@ Make sure you have **Python 3.8+** installed on your system.
 
 ---
 
+## 🖥️ Running and Testing via VS Code & Postman
+
+### 1. Running the Project in VS Code (VS)
+To run the project directly through Visual Studio Code:
+1. **Open Workspace**: Open the `house price prediction` folder in VS Code.
+2. **Select Interpreter**: Open `BHP/Server/server.py`. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS), search for `Python: Select Interpreter`, and select your virtual environment (e.g., `.venv` or `.venvflask1`).
+3. **Start the API Server**:
+   * Right-click inside `server.py` and select **Run Python File in Terminal**, or
+   * Click the **Play** button in the top-right corner of the editor.
+   * *This starts the Flask server at `http://127.0.0.1:5000/`.*
+4. **Start the Client UI**:
+   * Open `BHP/client/app.html`.
+   * If you have the **Live Server** extension installed, right-click the file and select **Open with Live Server**.
+   * Otherwise, simply right-click `app.html` and choose **Copy Path**, then paste it into your browser.
+
+---
+
+### 2. Testing API Endpoints via Postman
+You can test the Flask API routes using **Postman** to ensure predictions are working correctly without the frontend:
+
+#### A. Fetch Location List (`GET`)
+* **Request Type**: `GET`
+* **Request URL**: `http://127.0.0.1:5000/get_location_names`
+* **Headers**: None required.
+* **Steps**: Click **Send**.
+* **Expected Output**: A list of all 240+ locations in Bangalore:
+  ```json
+  {
+      "locations": ["1st phase jp nagar", "electronic city", "whitefield", ...]
+  }
+  ```
+
+#### B. Get Price Estimate (`POST`)
+* **Request Type**: `POST`
+* **Request URL**: `http://127.0.0.1:5000/predict_home_price`
+* **Body Format**: `x-www-form-urlencoded` or `form-data`
+* **Key-Value Parameters**:
+  * `total_sqft` : `1000`
+  * `bhk` : `2`
+  * `bath` : `2`
+  * `location` : `1st phase jp nagar` *(case-insensitive string matching one of the location names)*
+* **Steps**: 
+  1. Go to the **Body** tab in Postman.
+  2. Select the **x-www-form-urlencoded** (or **form-data**) radio button.
+  3. Add the keys and values as shown above.
+  4. Click **Send**.
+* **Expected Output**:
+  ```json
+  {
+      "estimated_price": 62.53
+  }
+  ```
+  *(Note: The result is in Lakhs, representing ₹62.53 Lakhs or ₹6,253,000).*
+
+---
+
 ## 🎓 Interview & Presentation Cheat Sheet
 
 Use these quick Q&As to explain the project during viva, presentation, or technical interviews:
