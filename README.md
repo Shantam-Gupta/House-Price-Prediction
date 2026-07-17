@@ -1,5 +1,11 @@
 # 🏡 Bangalore House Price Prediction Project
 
+### 👤 Developer Info
+* **Name:** Kumar Shantam Gupta
+* **Registration Number:** 23BAI11113
+
+---
+
 This project is a **Full-Stack Machine Learning Web Application** that predicts residential property prices in Bangalore (Bengaluru), India, based on area square footage, number of bedrooms (BHK), number of bathrooms, and location.
 
 The application features a modern, clean HTML/CSS/JS frontend, a Python Flask REST API backend, and a trained Linear Regression model.
